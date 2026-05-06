@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Success - User Created</title>
     <style>
-        /* Modern CSS styling for the database application */
  
         * {
             margin: 0;
@@ -114,8 +113,6 @@
         br {
             display: none;
         }
- 
-        /* Success message styling */
         .success-message {
             text-align: center;
             padding: 40px;
@@ -152,7 +149,6 @@
             color: #ffffff;
         }
  
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -164,7 +160,6 @@
             }
         }
  
-        /* Responsive design */
         @media (max-width: 600px) {
             body {
                 padding: 10px;
@@ -194,7 +189,6 @@
             }
         }
  
-        /* Error states */
         input.error {
             border-color: #000000;
             background: #f8f8f8;
@@ -205,13 +199,11 @@
             box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
         }
  
-        /* Loading state */
         input[type="submit"].loading {
             opacity: 0.7;
             cursor: not-allowed;
         }
  
-        /* Form validation styling */
         .form-group {
             margin-bottom: 20px;
         }

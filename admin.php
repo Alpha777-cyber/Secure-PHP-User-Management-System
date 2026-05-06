@@ -1,15 +1,45 @@
 <?php
+
 session_start();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    
+    if ($username === 'admin' && $password === 'admin123') {
+        
+        $_SESSION['admin_logged_in'] = true;
+        $_SESSION['admin_username'] = $username;
+        $_SESSION['login_time'] = time();
+        
+        header('Location: dashboard.php');
+        exit();
+        
+    } else {
+        
+        $login_error = "Invalid username or password";
+        error_log("Failed admin login attempt: Username '$username' from IP " . $_SERVER['REMOTE_ADDR']);
+    }
+}
+
+if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
+    
+    session_destroy();
+    header('Location: admin.php');
+    exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
+    <title>Admin Login - User Registration System</title>
+    
     <style>
-        /* Modern CSS styling for the database application */
- 
+        
         * {
             margin: 0;
             padding: 0;
@@ -28,16 +58,16 @@ session_start();
  
         .container {
             width: 100%;
-            max-width: 400px;
+            max-width: 360px;
             background: #ffffff;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             overflow: hidden;
         }
  
         form {
-            padding: 40px;
+            padding: 30px;
         }
  
         fieldset {
@@ -47,11 +77,11 @@ session_start();
         }
  
         legend {
-            font-size: 1.75rem;
+            font-size: 1.4rem;
             font-weight: 600;
             color: #000000;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 22px;
             padding: 0;
             width: 100%;
         }
@@ -60,8 +90,8 @@ session_start();
             display: block;
             font-weight: 500;
             color: #333333;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -69,13 +99,13 @@ session_start();
         input[type="text"],
         input[type="password"] {
             width: 100%;
-            padding: 12px;
+            padding: 10px 12px;
             border: 1px solid #d0d0d0;
             border-radius: 4px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: all 0.2s ease;
             background: #ffffff;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
  
         input[type="text"]:focus,
@@ -88,18 +118,18 @@ session_start();
  
         input[type="submit"] {
             width: 100%;
-            padding: 14px;
+            padding: 11px;
             background: #000000;
             color: #ffffff;
             border: none;
             border-radius: 4px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-top: 10px;
+            margin-top: 6px;
         }
  
         input[type="submit"]:hover {
@@ -150,23 +180,16 @@ session_start();
 </head>
 <body>
     <div class="container">
+        
         <form action="admin.php" method="POST">
+            
             <fieldset>
+                
                 <legend>Admin Login</legend>
 
                 <?php
-                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                    $username = $_POST['username'];
-                    $password = $_POST['password'];
-                    
-                    // Simple admin credentials (in production, use proper authentication)
-                    if ($username === 'admin' && $password === 'admin123') {
-                        $_SESSION['admin_logged_in'] = true;
-                        header('Location: dashboard.php');
-                        exit();
-                    } else {
-                        echo '<div class="alert alert-error">Invalid username or password</div>';
-                    }
+                if (isset($login_error)) {
+                    echo '<div class="alert alert-error">' . htmlspecialchars($login_error) . '</div>';
                 }
                 ?>
 
@@ -183,9 +206,49 @@ session_start();
                 </div>
 
                 <input type="submit" value="Login">
+                
             </fieldset>
         </form>
         <a href="signup.php" class="back-link">← Back to Signup</a>
     </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            
+            form.addEventListener('submit', function(event) {
+                let isValid = true;
+                
+                if (usernameInput.value.trim() === '') {
+                    usernameInput.parentElement.classList.add('error');
+                    isValid = false;
+                } else {
+                    usernameInput.parentElement.classList.remove('error');
+                }
+                
+                if (passwordInput.value.trim() === '') {
+                    passwordInput.parentElement.classList.add('error');
+                    isValid = false;
+                } else {
+                    passwordInput.parentElement.classList.remove('error');
+                }
+                
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
+            
+            usernameInput.addEventListener('input', function() {
+                this.parentElement.classList.remove('error');
+            });
+            
+            passwordInput.addEventListener('input', function() {
+                this.parentElement.classList.remove('error');
+            });
+        });
+    </script>
+    
 </body>
 </html>
