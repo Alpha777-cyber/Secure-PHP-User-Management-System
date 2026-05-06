@@ -5,19 +5,19 @@ A professional PHP-based user registration and management system with a clean, m
 ## 🚀 Features
 
 ### User Features
-- ✅ **Secure User Registration** - Collects first name, last name, email, gender, and password
-- 🔐 **Password Security** - MD5 hashing for password storage
-- 📧 **Email Validation** - Built-in email format validation
-- 🎨 **Professional UI** - Clean black and white design with responsive layout
-- 📱 **Mobile Responsive** - Works seamlessly on all devices
+-  **Secure User Registration** - Collects first name, last name, email, gender, and password
+-  **Password Security** - MD5 hashing for password storage
+-  **Email Validation** - Built-in email format validation
+-  **Professional UI** - Clean black and white design with responsive layout
+-  **Mobile Responsive** - Works seamlessly on all devices
 
 ### Admin Features
-- 🔑 **Secure Admin Login** - Session-based authentication system
-- 📊 **User Statistics** - Real-time dashboard with user metrics
-- 👥 **User Management** - View, edit, and delete registered users
-- 🔍 **Search Functionality** - Real-time user search
-- 📈 **Analytics** - Track total users, daily registrations, and gender demographics
-- ⏰ **Timestamp Tracking** - Automatic registration date/time logging
+-  **Secure Admin Login** - Session-based authentication system
+-  **User Statistics** - Real-time dashboard with user metrics
+-  **User Management** - View, edit, and delete registered users
+-  **Search Functionality** - Real-time user search
+-  **Analytics** - Track total users, daily registrations, and gender demographics
+-  **Timestamp Tracking** - Automatic registration date/time logging
 
 ## 🛠️ Technology Stack
 
@@ -48,10 +48,10 @@ CREATE DATABASE student_db;
 The database connection is pre-configured in `connection.php`:
 
 ```php
-$host = 'localhost';
-$dbname = 'student_db';
-$username = 'root';
-$password = 'mu1ne2ze3ro4';
+$host = 'host name';
+$dbname = 'data base name';
+$username = 'user name';
+$password = 'password';
 ```
 
 Update the credentials if needed.
