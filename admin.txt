@@ -1,20 +1,2 @@
 admin
 admin123
-# Define the range of days you want to fill (e.g., April 10th to April 20th)
-10..20 | ForEach-Object {
-    $date = "2026-04-$($_)T12:00:00"
-    
-    # Set environment variables for the current session
-    $env:GIT_AUTHOR_DATE = $date
-    $env:GIT_COMMITTER_DATE = $date
-    
-    # Create an empty commit for that date
-    git commit --allow-empty -m "made changes"
-}
-
-# Clean up environment variables so future commits are normal
-Remove-Item Env:GIT_AUTHOR_DATE
-Remove-Item Env:GIT_COMMITTER_DATE
-
-# Push the changes
-git push origin main
