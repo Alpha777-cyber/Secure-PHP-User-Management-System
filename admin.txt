@@ -1,2 +1,3 @@
 admin
 admin123
+DELETE http://localhost/api.php?id=1
