@@ -95,7 +95,6 @@ switch ($method) {
                 "error" => $conn->error
             ]);
         }
-
         break;
 
 
