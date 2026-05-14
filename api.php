@@ -18,6 +18,7 @@ if ($conn->connect_error) {
     ]));
 }
 
+
 $method = $_SERVER['REQUEST_METHOD'];
 
 switch ($method) {
