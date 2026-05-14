@@ -57,7 +57,6 @@ switch ($method) {
                 "data" => $users
             ]);
         }
-
         break;
 
 
