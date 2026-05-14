@@ -25,7 +25,6 @@ switch ($method) {
 
     /*READ (GET)*/
     case 'GET':
-
         // GET ONE USER
         if (isset($_GET['id'])) {
             $id = intval($_GET['id']);
